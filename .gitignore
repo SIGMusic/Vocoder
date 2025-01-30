@@ -1,0 +1,9 @@
+Builds/
+JuceLibraryCode/
+.DS_Store/
+
+# Workspace specific
+*.sln
+*.vcxproj
+*.xcworkspace
+*.xcodeproj
