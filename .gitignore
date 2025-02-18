@@ -1,6 +1,6 @@
 Builds/
 JuceLibraryCode/
-.DS_Store/
+.DS_Store
 
 # Workspace specific
 *.sln
