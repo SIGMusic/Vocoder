@@ -2,6 +2,13 @@ Builds/
 JuceLibraryCode/
 .DS_Store
 
+# Platform-specific JUCE submodule builds
+libs/JUCE/extras/Projucer/Builds/
+libs/JUCE/extras/AudioPluginHost/Builds/
+libs/JUCE/extras/AudioPluginClient/Builds/
+libs/JUCE/extras/Projucer/JuceLibraryCode/
+libs/JUCE/modules/JuceLibraryCode/
+
 # Workspace specific
 *.sln
 *.vcxproj
