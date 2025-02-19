@@ -20,7 +20,7 @@ Please do not edit the **`Vocoder.jucer`** in Projucer without communicating wit
 ### Step 1: Clone the Repository and Initialize Submodules
 When you clone the repo, make sure you initialize the submodules:
 ```bash
-git clone --recurse-submodules <repo-url>
+git clone --recurse-submodules https://github.com/SIGMusic/Vocoder.git
 ```
 
 ### Step 2: Build JUCE Tools
