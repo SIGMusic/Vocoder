@@ -43,7 +43,7 @@ void VocoderAudioProcessorEditor::paint (juce::Graphics& g)
     g.setFont (juce::FontOptions (15.0f));
     
     //write fun stuff
-    g.drawFittedText ("hi guys", 0, 0, getWidth(), 30, juce::Justification::centred, 1);
+    g.drawFittedText ("hi guys\nadding this line to test debugging", 0, 0, getWidth(), 30, juce::Justification::centred, 1);
 }
 
 void VocoderAudioProcessorEditor::resized()
