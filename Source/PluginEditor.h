@@ -29,5 +29,10 @@ private:
     // access the processor object that created it.
     VocoderAudioProcessor& audioProcessor;
 
+    //define the buttons and sliders and such here first
+    juce::Slider lowFreq;
+    juce::Slider midFreq;
+    juce::Slider hiFreq;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VocoderAudioProcessorEditor)
 };
