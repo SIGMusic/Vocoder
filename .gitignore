@@ -1,6 +1,6 @@
 Builds/
 JuceLibraryCode/
-.DS_Store
+VST3 Builds/
 
 # Platform-specific JUCE submodule builds
 libs/JUCE/extras/Projucer/Builds/
@@ -14,3 +14,4 @@ libs/JUCE/modules/JuceLibraryCode/
 *.vcxproj
 *.xcworkspace
 *.xcodeproj
+.DS_Store
