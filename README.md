@@ -31,10 +31,10 @@ git clone --recurse-submodules <repo-url>
 ### Step 3: Configure Global Paths in Projucer
 1. **Open the `Vocoder.jucer` file** in **Projucer**.
 2. In **File → Global Paths**:
-		a.	Set **JUCE Modules** to:  
+	* Set **JUCE Modules** to:  
    			`<YourProjectRootDirPath>\libs\JUCE\modules`
    
-	 	b.	Set **Path to JUCE** to the location of the **JUCE submodule**:  
+	* Set **Path to JUCE** to the location of the **JUCE submodule**:  
   	 		`<YourProjectRootDirPath>\libs\JUCE`
 
 ### Step 4: Set Debug Command in Visual Studio
