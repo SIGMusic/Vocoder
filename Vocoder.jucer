@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="GYMQwP" name="Vocoder" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="LbAyPQ" name="Vocoder">
     <GROUP id="{00210581-20FD-D418-85FA-253553C23CBC}" name="Source">
       <FILE id="ZvQLX5" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -32,7 +32,7 @@
   <EXPORTFORMATS>
     <VS2022 targetFolder="Builds/VisualStudio2022">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="Vocoder"/>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Vocoder" postbuildCommand="xcopy &quot;$(ProjectDir)x64\Debug\VST3\Vocoder.vst3\Contents\x86_64-win\Vocoder.vst3&quot; &quot;C:\Program Files\Common Files\VST3&quot; /Y"/>
         <CONFIGURATION isDebug="0" name="Release" targetName="Vocoder"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
