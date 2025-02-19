@@ -32,7 +32,8 @@
   <EXPORTFORMATS>
     <VS2022 targetFolder="Builds/VisualStudio2022">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="Vocoder" postbuildCommand="xcopy &quot;$(ProjectDir)x64\Debug\VST3\Vocoder.vst3\Contents\x86_64-win\Vocoder.vst3&quot; &quot;C:\Program Files\Common Files\VST3&quot; /Y"/>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Vocoder" enablePluginBinaryCopyStep="0"
+                       vst3BinaryLocation_x64=".\VST3 Builds" binaryPath=".\VST3 Builds"/>
         <CONFIGURATION isDebug="0" name="Release" targetName="Vocoder"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
