@@ -3,9 +3,7 @@
 
 ## File Structure:
 ```
-PARENT/
-│
-├── Vocoder/                # Project folder
+Vocoder/                # Project folder
 │   ├── source/             # Source code
 │   ├── libs/               # JUCE submodule
 │   ├── VST3 Builds/        # Empty folder for VST3 binaries
