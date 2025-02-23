@@ -8,6 +8,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "Vocoder.h"
 
 //==============================================================================
 VocoderAudioProcessor::VocoderAudioProcessor()
@@ -95,6 +96,8 @@ void VocoderAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    juce::dsp::ProcessSpec spec{ sampleRate, static_cast<juce::uint32>(samplesPerBlock), 2 };
+    vocoder.prepare(spec);
 }
 
 void VocoderAudioProcessor::releaseResources()
@@ -156,6 +159,8 @@ void VocoderAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce
 
         // ..do something to the data...
     }
+
+    vocoder.process(buffer, buffer);
 }
 
 //==============================================================================
