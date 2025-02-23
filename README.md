@@ -63,5 +63,6 @@ In **AudioPluginHost**:
 ## Notes:
 - Please let us know if you encounter any issues or need help with setup!
 - When you build your plugin in Visual Studio, it will copy the **VST3** binary into the **VST3 Builds** folder, making it easier to find and use for testing with **AudioPluginHost** than the default dump location.
+- Be sure to work in a separate branch for each feature and `git pull` every time before working!
 
 
