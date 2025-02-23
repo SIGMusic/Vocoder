@@ -5,6 +5,22 @@
               pluginFormats="buildVST3" pluginManufacturer="SIGMusic">
   <MAINGROUP id="LbAyPQ" name="Vocoder">
     <GROUP id="{00210581-20FD-D418-85FA-253553C23CBC}" name="Source">
+      <FILE id="GcMKCs" name="CiruclarBuffer.cpp" compile="1" resource="0"
+            file="Source/CiruclarBuffer.cpp"/>
+      <FILE id="EpMoI0" name="CiruclarBuffer.h" compile="0" resource="0"
+            file="Source/CiruclarBuffer.h"/>
+      <FILE id="a73KUr" name="EnvelopeFollower.cpp" compile="1" resource="0"
+            file="Source/EnvelopeFollower.cpp"/>
+      <FILE id="Oi68FF" name="EnvelopeFollower.h" compile="0" resource="0"
+            file="Source/EnvelopeFollower.h"/>
+      <FILE id="MxAkD7" name="FilterBank.cpp" compile="1" resource="0" file="Source/FilterBank.cpp"/>
+      <FILE id="tmyLOm" name="FilterBank.h" compile="0" resource="0" file="Source/FilterBank.h"/>
+      <FILE id="WZXcvc" name="Modulator.cpp" compile="1" resource="0" file="Source/Modulator.cpp"/>
+      <FILE id="kz0GM2" name="Modulator.h" compile="0" resource="0" file="Source/Modulator.h"/>
+      <FILE id="LsCEaW" name="Utilities.cpp" compile="1" resource="0" file="Source/Utilities.cpp"/>
+      <FILE id="jAu9dB" name="Utilities.h" compile="0" resource="0" file="Source/Utilities.h"/>
+      <FILE id="WE4gMn" name="Vocoder.cpp" compile="1" resource="0" file="Source/Vocoder.cpp"/>
+      <FILE id="gnnLWb" name="Vocoder.h" compile="0" resource="0" file="Source/Vocoder.h"/>
       <FILE id="ZvQLX5" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="kZbjz0" name="PluginProcessor.h" compile="0" resource="0"
