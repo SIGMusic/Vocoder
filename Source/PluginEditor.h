@@ -30,9 +30,11 @@ private:
     VocoderAudioProcessor& audioProcessor;
 
     //define the buttons and sliders and such here first
-    juce::Slider lowFreq;
-    juce::Slider midFreq;
-    juce::Slider hiFreq;
+    juce::Slider attack;
+    juce::Slider release;
+    
+    juce::Slider iGain;
+    juce::Slider oGain;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VocoderAudioProcessorEditor)
 };
