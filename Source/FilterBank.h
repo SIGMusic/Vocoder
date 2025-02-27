@@ -8,9 +8,14 @@ public:
     FilterBank();
     void prepare(const juce::dsp::ProcessSpec& spec);
     void process(juce::AudioBuffer<float>& buffer);
+    void setBandFrequencies();
     void setBandFrequencies(const std::vector<float>& centerFrequencies);
+    void setQFactor(double q);
+    void setSampleRate(double rate);
 
 private:
     static constexpr int numBands = 8;
-    std::vector<std::unique_ptr<juce::dsp::IIR::Filter<float>>> filters;
+    double sampleRate = 44100.0;
+    double qFactor = 1.0;
+    std::vector<juce::dsp::IIR::Filter<float>> filters;
 };
