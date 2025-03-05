@@ -17,6 +17,7 @@
 class VocoderAudioProcessor  : public juce::AudioProcessor
 {
 public:
+    
     //==============================================================================
     VocoderAudioProcessor();
     ~VocoderAudioProcessor() override;

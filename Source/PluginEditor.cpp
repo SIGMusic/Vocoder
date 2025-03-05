@@ -18,15 +18,15 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     setSize (400, 300);
     
     // implement your slider/buttons here
-    attack.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-    attack.setRange(0.0, 30.0, 0.1);
-    attack.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
-    attack.setPopupDisplayEnabled (true, false, this);
-    
-    release.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-    release.setRange(50.0, 500.0, 0.5);
-    release.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
-    release.setPopupDisplayEnabled (true, false, this);
+//    attack.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+//    attack.setRange(0.0, 30.0, 0.1);
+//    attack.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
+//    attack.setPopupDisplayEnabled (true, false, this);
+//    
+//    release.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+//    release.setRange(50.0, 500.0, 0.5);
+//    release.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
+//    release.setPopupDisplayEnabled (true, false, this);
     
     iGain.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     iGain.setRange(-12.0, 6.0, 0.1);
@@ -41,8 +41,10 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     // frequency ranges 20-12000 (setup later)
     
     // add the slider/button to the gui
-    addAndMakeVisible(&attack);
-    addAndMakeVisible(&release);
+//    addAndMakeVisible(&attack);
+//    addAndMakeVisible(&release);
+    addAndMakeVisible(&iGain);
+    addAndMakeVisible(&oGain);
 }
 
 VocoderAudioProcessorEditor::~VocoderAudioProcessorEditor()
@@ -68,8 +70,8 @@ void VocoderAudioProcessorEditor::resized()
     // subcomponents in your editor..
     
     // setBounds sets the position and size of the slider with arguments (x, y, width, height)
-    attack.setBounds(0, 0, 50, 50);
-    release.setBounds(50, 0, 50, 50);
+//    attack.setBounds(0, 0, 50, 50);
+//    release.setBounds(50, 0, 50, 50);
     iGain.setBounds(0, 50, 50, 50);
     oGain.setBounds(50, 50, 50, 50);
 }

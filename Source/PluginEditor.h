@@ -30,8 +30,8 @@ private:
     VocoderAudioProcessor& audioProcessor;
 
     //define the buttons and sliders and such here first
-    juce::Slider attack;
-    juce::Slider release;
+//    juce::Slider attack;
+//    juce::Slider release;
     
     juce::Slider iGain;
     juce::Slider oGain;
