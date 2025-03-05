@@ -7,7 +7,7 @@ class FilterBank
 public:
     FilterBank();
     void prepare(const juce::dsp::ProcessSpec& spec);
-    void processOneBand(juce::AudioBuffer<float>& buffer, int bandToProcess);
+    float processOneBand(float sample, int bandToProcess);
     void setBandFrequencies();
     void setBandFrequencies(const std::vector<float>& centerFrequencies);
     void setQFactor(double q);
