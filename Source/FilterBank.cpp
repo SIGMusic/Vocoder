@@ -15,14 +15,14 @@ void FilterBank::prepare(const juce::dsp::ProcessSpec& spec)
 {
     for (auto& filter : filters) {
         filter.reset(); // reset filter state, clearing history if there is any
-        filter.prepare(spec);
         setBandFrequencies(); // set the coefficients of each filter, using the default center frequencies calculated from the frequency range of (20, 12000)
+        filter.prepare(spec);
     }
 }
 
 
 // Creates/applies IIRFilter coefficients for each IIRFilter in the bank, calculating center frequencies based off of the frequency range.
-// Make sure this is called right after prepare()
+// This is called right after filter.prepare()
 void FilterBank::setBandFrequencies()
 {    
     const std::tuple<double, double> freqRange(20.0, 12000.0);// hardcoded for now, but we'll let the user change this later
@@ -55,7 +55,7 @@ void FilterBank::setBandFrequencies(const std::vector<float>& centerFrequencies)
 
 
 // These setters don't do anything to the filters by themselves.
-// setBandFrequences() or its overload must be called again to update the filters' coefficients.
+// setBandFrequences() or its overload must be called again after calling these setters in order to update the filters' coefficients.
 void FilterBank::setQFactor(double q) {
     qFactor = q;
 }
