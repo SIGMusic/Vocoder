@@ -65,10 +65,9 @@ void FilterBank::setSampleRate(double rate) {
 
 
 // Runs the passed AudioBuffer through each filter
-void FilterBank::process(juce::AudioBuffer<float>& buffer)
+void FilterBank::processOneBand(juce::AudioBuffer<float>& buffer, int bandToProcess)
 {
     juce::dsp::AudioBlock<float> block(buffer);
 
-    for (auto& filter : filters)
-        filter.process(juce::dsp::ProcessContextReplacing<float>(block));
+    filters[bandToProcess].process(juce::dsp::ProcessContextReplacing<float>(block));
 }
