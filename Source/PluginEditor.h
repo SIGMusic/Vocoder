@@ -35,6 +35,6 @@ private:
     
     juce::Slider iGain;
     juce::Slider oGain;
-    
+    juce::Slider nBands;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VocoderAudioProcessorEditor)
 };

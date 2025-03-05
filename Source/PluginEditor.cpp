@@ -37,7 +37,10 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     oGain.setRange(-12.0, 6.0, 0.1);
     oGain.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
     oGain.setPopupDisplayEnabled (true, false, this);
-    
+    nBands.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    nBands.setRange(8, 40, 2);
+    nBands.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 10);
+    nBands.setPopupDisplayEnabled (false, false, this);
     // frequency ranges 20-12000 (setup later)
     
     // add the slider/button to the gui
@@ -45,6 +48,7 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
 //    addAndMakeVisible(&release);
     addAndMakeVisible(&iGain);
     addAndMakeVisible(&oGain);
+    addAndMakeVisible(&nBands);
 }
 
 VocoderAudioProcessorEditor::~VocoderAudioProcessorEditor()
@@ -74,4 +78,5 @@ void VocoderAudioProcessorEditor::resized()
 //    release.setBounds(50, 0, 50, 50);
     iGain.setBounds(0, 50, 50, 50);
     oGain.setBounds(50, 50, 50, 50);
+    nBands.setBounds(100, 100, 50, 50);
 }
