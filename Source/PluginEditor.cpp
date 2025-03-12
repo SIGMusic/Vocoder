@@ -15,18 +15,9 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
-    
-    // implement your slider/buttons here
-//    attack.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-//    attack.setRange(0.0, 30.0, 0.1);
-//    attack.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
-//    attack.setPopupDisplayEnabled (true, false, this);
-//    
-//    release.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-//    release.setRange(50.0, 500.0, 0.5);
-//    release.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
-//    release.setPopupDisplayEnabled (true, false, this);
+    setSize (1000, 600);
+    setResizable(true, true);
+    getConstrainer()->setFixedAspectRatio(1000.0/600.0);
     
     iGain.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     iGain.setRange(-12.0, 6.0, 0.1);
@@ -64,6 +55,9 @@ void VocoderAudioProcessorEditor::paint (juce::Graphics& g)
     g.setColour (juce::Colours::white);
     g.setFont (juce::FontOptions (15.0f));
     
+    g.fillRect(100, 100, 100 ,100);
+    
+    
     //write fun stuff
     g.drawFittedText ("hi guys\nadding this line to test debugging", 0, 0, getWidth(), 30, juce::Justification::centred, 1);
 }
@@ -74,8 +68,6 @@ void VocoderAudioProcessorEditor::resized()
     // subcomponents in your editor..
     
     // setBounds sets the position and size of the slider with arguments (x, y, width, height)
-//    attack.setBounds(0, 0, 50, 50);
-//    release.setBounds(50, 0, 50, 50);
     iGain.setBounds(0, 50, 50, 50);
     oGain.setBounds(50, 50, 50, 50);
     nBands.setBounds(150, 0, 100, 100);
