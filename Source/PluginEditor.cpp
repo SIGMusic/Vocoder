@@ -78,5 +78,9 @@ void VocoderAudioProcessorEditor::resized()
 //    release.setBounds(50, 0, 50, 50);
     iGain.setBounds(0, 50, 50, 50);
     oGain.setBounds(50, 50, 50, 50);
-    nBands.setBounds(100, 100, 50, 50);
+    nBands.setBounds(150, 0, 100, 100);
+}
+void VocoderAudioProcessorEditor::setComponent(juce::Component c, int left, int top, int width, int height) {
+
+        
 }
