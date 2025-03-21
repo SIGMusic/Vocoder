@@ -28,7 +28,7 @@ void FilterBank::setBandFrequencies()
     const std::tuple<double, double> freqRange(20.0, 12000.0);// hardcoded for now, but we'll let the user change this later
     //to do here:
     //convert qFactor to band width
-    //space out center frequencies exponentially using band ranges (ouch) so that they are spread evenly to human perception
+    //space out center frequencies exponentially so that they are spread evenly to human perception
     const std::vector<double> centerFrequencies = {100.0, 195.0, 380.25, 741.4875, 1445.90062, 2819.50622, 5498.03713, 10721.1724}; //hardcoded for now (n+1 = 1.95n)
     
     for (size_t i = 0; i < filters.size(); ++i)
@@ -65,9 +65,7 @@ void FilterBank::setSampleRate(double rate) {
 
 
 // Runs the passed AudioBuffer through each filter
-void FilterBank::processOneBand(juce::AudioBuffer<float>& buffer, int bandToProcess)
+float FilterBank::processOneBand(float sample, int bandToProcess)
 {
-    juce::dsp::AudioBlock<float> block(buffer);
-
-    filters[bandToProcess].process(juce::dsp::ProcessContextReplacing<float>(block));
+    return filters[bandToProcess].processSample(sample);
 }
