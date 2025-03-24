@@ -16,7 +16,7 @@ void EnvelopeFollower::setAttackRelease(float attackMs, float releaseMs)
     releaseCoeff = std::exp(-1.0f / ((releaseMs / 1000.0f) * sampleRate));
 }
 
-float EnvelopeFollower::processSample(float inputSample)
+float EnvelopeFollower::processSample(const float& inputSample)
 {
     // Full-wave rectification (absolute value)
     float rectified = std::abs(inputSample);

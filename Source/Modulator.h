@@ -1,18 +1,12 @@
 #pragma once
-
 #include <JuceHeader.h>
-#include "FilterBank.h"
-#include "EnvelopeFollower.h"
 
-class Modulator
-{
+class Modulator {
 public:
-    Modulator(std::vector<float> audio, std::vector<float> amplitude);
-
-    float applyModulation();
+    void prepare(double sampleRate);
+    void applyModulation(juce::AudioBuffer<float>& carrierBand, juce::AudioBuffer<float>& modulatorBand,
+        juce::AudioBuffer<float>& outputBand);
 
 private:
-	std::vector<float> audio_;
-	std::vector<float> amplitude_;
-	float modulatedAudio_ = 0.0f;
+    juce::dsp::Gain<float> envelopeFollower;
 };

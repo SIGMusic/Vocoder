@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="GYMQwP" name="Vocoder" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
-              pluginFormats="buildVST3" pluginManufacturer="SIGMusic">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildVST3"
+              pluginManufacturer="SIGMusic">
   <MAINGROUP id="LbAyPQ" name="Vocoder">
     <GROUP id="{00210581-20FD-D418-85FA-253553C23CBC}" name="Source">
       <FILE id="GcMKCs" name="CiruclarBuffer.cpp" compile="1" resource="0"

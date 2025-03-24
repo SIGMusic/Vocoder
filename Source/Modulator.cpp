@@ -1,14 +1,21 @@
 #include "Modulator.h"
 
-Modulator::Modulator(std::vector<float> audio, std::vector<float> amplitude) :
-	audio_(audio),
-	amplitude_(amplitude)
-{
+void Modulator::prepare(double sampleRate) {
+    envelopeFollower.prepare({ sampleRate, static_cast<juce::uint32>(512), 1 });
 }
 
-float Modulator::applyModulation() {
-	for (unsigned int i = 0; i < audio_.size(); i++) {
-		modulatedAudio_ += audio_[i] * amplitude_[i];
-	}
-	return modulatedAudio_;
+void Modulator::applyModulation(juce::AudioBuffer<float>& carrierBand, juce::AudioBuffer<float>& modulatorBand,
+    juce::AudioBuffer<float>& outputBand)
+{
+    for (int channel = 0; channel < outputBand.getNumChannels(); ++channel) {
+        const float* car = carrierBand.getReadPointer(channel);
+        const float* mod = modulatorBand.getReadPointer(channel);
+        float* out = outputBand.getWritePointer(channel);
+
+        for (int sample = 0; sample < outputBand.getNumSamples(); ++sample) {
+            // Simple amplitude following (no smoothing here, you could add attack/release envelope)
+            float modulatedGain = std::abs(mod[sample]);
+            out[sample] = modulatedGain * car[sample];
+        }
+    }
 }

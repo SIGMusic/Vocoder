@@ -7,11 +7,11 @@ class EnvelopeFollower {
 public:
     EnvelopeFollower();
     void prepare(double sampleRate);
-    float processSample(float inputSample);
+    float processSample(const float& inputSample);
     void setAttackRelease(float attackMs, float releaseMs);
 
 private:
-    double sampleRate = 44100.0;
+    double sampleRate = 48000.0;
     float envelope = 0.0f;
     float attackCoeff = 0.0f;
     float releaseCoeff = 0.0f;
