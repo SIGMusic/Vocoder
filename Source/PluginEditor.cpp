@@ -34,11 +34,12 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     nBands.setPopupDisplayEnabled (false, false, this);
     // frequency ranges 20-12000 (setup later)
     for (auto& c : vocoders) {
-        c.setSliderStyle(juce::Slider::LinearVertical);
-        c.setTextBoxStyle(juce::Slider::NoTextBox, true, 0, 0);
+        c = new juce::Slider();
+        c->setSliderStyle(juce::Slider::LinearVertical);
+        c->setTextBoxStyle(juce::Slider::NoTextBox, true, 0, 0);
     }
     for (int i = 0; i < 8; i++) {
-        addAndMakeVisible(&vocoders[i]);
+        addAndMakeVisible(vocoders[i]);
     }
     // add the slider/button to the gui
 //    addAndMakeVisible(&attack);
@@ -50,6 +51,10 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
 
 VocoderAudioProcessorEditor::~VocoderAudioProcessorEditor()
 {
+    for (auto c : vocoders) {
+        delete c;
+        c = nullptr;
+    }
 }
 
 //==============================================================================
@@ -66,6 +71,7 @@ void VocoderAudioProcessorEditor::paint (juce::Graphics& g)
     
     //write fun stuff "hi guys\nadding this line to test debugging12" +
     g.drawFittedText (std::to_string(nBands.getValue()), 0, 0, getWidth(), 30, juce::Justification::centred, 1);
+    resized();
 }
 
 void VocoderAudioProcessorEditor::resized()
@@ -76,8 +82,11 @@ void VocoderAudioProcessorEditor::resized()
     // setBounds sets the position and size of the slider with arguments (x, y, width, height)
     float vocoderWidth = 750.0 / nBands.getValue();
     for (int i = 0; i < nBands.getValue(); i++) {
-        addAndMakeVisible(&vocoders[i]);
-        setComponent(vocoders[i], i * vocoderWidth + 200, 100, vocoderWidth, 400);
+        addAndMakeVisible(vocoders[i]);
+        setComponent(*vocoders[i], i * vocoderWidth + 200, 100, vocoderWidth, 400);
+    }
+    for (int i = nBands.getValue(); i < maxVocoders; i++) {
+        removeChildComponent(vocoders[i]);
     }
     runs++;
     setComponent(iGain, 0, 50, 100, 100);

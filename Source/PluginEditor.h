@@ -39,7 +39,7 @@ private:
     juce::Slider iGain;
     juce::Slider oGain;
     juce::Slider nBands;
-    std::vector<juce::Slider> vocoders = std::vector<juce::Slider> (maxVocoders);
+    std::vector<juce::Slider*> vocoders = std::vector<juce::Slider*> (maxVocoders);
     int runs = 0;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VocoderAudioProcessorEditor)
 };
