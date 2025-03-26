@@ -18,20 +18,29 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     setSize (width_, height_);
     setResizable(true, true);
     getConstrainer()->setFixedAspectRatio(ratio_);
-    
+
+    inGainText.setText("In Gain");
     iGain.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     iGain.setRange(-12.0, 6.0, 0.1);
     iGain.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
     iGain.setPopupDisplayEnabled (true, false, this);
-    
+
+    outGainText.setText("Out Gain");
+
     oGain.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     oGain.setRange(-12.0, 6.0, 0.1);
     oGain.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
     oGain.setPopupDisplayEnabled (true, false, this);
+
     nBands.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     nBands.setRange(8, 40, 2);
     nBands.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 10);
     nBands.setPopupDisplayEnabled (false, false, this);
+
+    freqRange.setSliderStyle(juce::Slider::TwoValueHorizontal);
+    freqRange.setRange(20, 12000, 1);
+    freqRange.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
+    freqRange.setPopupDisplayEnabled(false, false, this);
     // frequency ranges 20-12000 (setup later)
     for (auto& c : vocoders) {
         c = new juce::Slider();
@@ -47,6 +56,9 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     addAndMakeVisible(&iGain);
     addAndMakeVisible(&oGain);
     addAndMakeVisible(&nBands);
+    addAndMakeVisible(&outGainText);
+    addAndMakeVisible(&inGainText);
+    addAndMakeVisible(&freqRange);
 }
 
 VocoderAudioProcessorEditor::~VocoderAudioProcessorEditor()
@@ -70,7 +82,7 @@ void VocoderAudioProcessorEditor::paint (juce::Graphics& g)
     
     
     //write fun stuff "hi guys\nadding this line to test debugging12" +
-    g.drawFittedText (std::to_string(nBands.getValue()), 0, 0, getWidth(), 30, juce::Justification::centred, 1);
+    g.drawFittedText (std::to_string(runs), 0, 0, getWidth(), 30, juce::Justification::centred, 1);
     resized();
 }
 
@@ -85,11 +97,14 @@ void VocoderAudioProcessorEditor::resized()
         addAndMakeVisible(vocoders[i]);
         setComponent(*vocoders[i], i * vocoderWidth + 200, 100, vocoderWidth, 400);
     }
+    setComponent(freqRange, 200, 600, 750, 100);
     for (int i = nBands.getValue(); i < maxVocoders; i++) {
         removeChildComponent(vocoders[i]);
     }
     runs++;
+    setComponent(inGainText, 0, 20, 20, 20);
     setComponent(iGain, 0, 50, 100, 100);
+    setComponent(outGainText, 100, 20, 20, 20);
     setComponent(oGain, 100, 50, 100, 100);
     //oGain.setBounds(50, 50, 50, 50);
     setComponent(nBands, 0, 250, 200, 200);
