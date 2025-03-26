@@ -26,7 +26,6 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     iGain.setPopupDisplayEnabled (true, false, this);
 
     outGainText.setText("Out Gain");
-
     oGain.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     oGain.setRange(-12.0, 6.0, 0.1);
     oGain.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
@@ -37,6 +36,7 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     nBands.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 10);
     nBands.setPopupDisplayEnabled (false, false, this);
 
+    freqText.setText("Frequency Range");
     freqRange.setSliderStyle(juce::Slider::TwoValueHorizontal);
     freqRange.setRange(20, 12000, 1);
     freqRange.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
@@ -59,6 +59,7 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     addAndMakeVisible(&outGainText);
     addAndMakeVisible(&inGainText);
     addAndMakeVisible(&freqRange);
+    addAndMakeVisible(&freqText);
 }
 
 VocoderAudioProcessorEditor::~VocoderAudioProcessorEditor()
@@ -97,18 +98,17 @@ void VocoderAudioProcessorEditor::resized()
         addAndMakeVisible(vocoders[i]);
         setComponent(*vocoders[i], i * vocoderWidth + 200, 100, vocoderWidth, 400);
     }
-    setComponent(freqRange, 200, 600, 750, 100);
+    setComponent(freqRange, 200, 500, 750, 100);
     for (int i = nBands.getValue(); i < maxVocoders; i++) {
         removeChildComponent(vocoders[i]);
     }
     runs++;
-    setComponent(inGainText, 0, 20, 20, 20);
+    setComponent(inGainText, 10, 20, 20, 20);
     setComponent(iGain, 0, 50, 100, 100);
-    setComponent(outGainText, 100, 20, 20, 20);
+    setComponent(outGainText, 110, 20, 20, 20);
     setComponent(oGain, 100, 50, 100, 100);
-    //oGain.setBounds(50, 50, 50, 50);
     setComponent(nBands, 0, 250, 200, 200);
-    //nBands.setBounds(150, 0, 100, 100);
+    setComponent(freqText, 560, 510, 600, 100);
 }
 void VocoderAudioProcessorEditor::setComponent(juce::Component& c, int left, int top, int width, int height) {
     //use ratio to make it ratioed
@@ -118,5 +118,4 @@ void VocoderAudioProcessorEditor::setComponent(juce::Component& c, int left, int
     int rwidth = scalar * width;
     int rheight = scalar * height;
     c.setBounds(rleft, rtop, rwidth, rheight);
-        
 }

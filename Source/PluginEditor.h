@@ -44,6 +44,7 @@ private:
     juce::DrawableText inGainText;
     juce::DrawableText outGainText;
     juce::DrawableText filterText;
+    juce::DrawableText freqText;
     std::vector<juce::Slider*> vocoders = std::vector<juce::Slider*> (maxVocoders);
     int runs = 0;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VocoderAudioProcessorEditor)
