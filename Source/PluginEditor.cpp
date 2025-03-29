@@ -31,6 +31,7 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     oGain.setTextBoxStyle (juce::Slider::TextBoxBelow, false, 50, 10);
     oGain.setPopupDisplayEnabled (true, false, this);
 
+    bandText.setText("number of bands");
     nBands.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     nBands.setRange(8, 40, 2);
     nBands.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 10);
@@ -42,14 +43,19 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     freqRange.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 50, 10);
     freqRange.setPopupDisplayEnabled(false, false, this);
     // frequency ranges 20-12000 (setup later)
+    vocoderText.setText("vocoder bank");
     for (auto& c : vocoders) {
         c = new juce::Slider();
         c->setSliderStyle(juce::Slider::LinearVertical);
         c->setTextBoxStyle(juce::Slider::NoTextBox, true, 0, 0);
+        c->setSliderSnapsToMousePosition(false);
+        c->setInterceptsMouseClicks(true, true);
+        c->setRange(0, 1.0);
     }
     for (int i = 0; i < 8; i++) {
         addAndMakeVisible(vocoders[i]);
     }
+    
     // add the slider/button to the gui
 //    addAndMakeVisible(&attack);
 //    addAndMakeVisible(&release);
@@ -60,6 +66,8 @@ VocoderAudioProcessorEditor::VocoderAudioProcessorEditor (VocoderAudioProcessor&
     addAndMakeVisible(&inGainText);
     addAndMakeVisible(&freqRange);
     addAndMakeVisible(&freqText);
+    addAndMakeVisible(&bandText);
+    addAndMakeVisible(&vocoderText);
 }
 
 VocoderAudioProcessorEditor::~VocoderAudioProcessorEditor()
@@ -107,8 +115,10 @@ void VocoderAudioProcessorEditor::resized()
     setComponent(iGain, 0, 50, 100, 100);
     setComponent(outGainText, 110, 20, 20, 20);
     setComponent(oGain, 100, 50, 100, 100);
+    setComponent(bandText, 10, 220, 20, 20);
     setComponent(nBands, 0, 250, 200, 200);
     setComponent(freqText, 560, 510, 600, 100);
+    setComponent(vocoderText, 750, 30, 60, 30);
 }
 void VocoderAudioProcessorEditor::setComponent(juce::Component& c, int left, int top, int width, int height) {
     //use ratio to make it ratioed
@@ -118,4 +128,37 @@ void VocoderAudioProcessorEditor::setComponent(juce::Component& c, int left, int
     int rwidth = scalar * width;
     int rheight = scalar * height;
     c.setBounds(rleft, rtop, rwidth, rheight);
+}
+
+void VocoderAudioProcessorEditor::updateSliderValueAtPosition(const juce::Point<int>& position) {
+    for (int i = 0; i < vocoders.size(); ++i)
+    {
+        if (vocoders[i]->getBounds().contains(position))
+        {
+            // Convert to slider's local coordinates
+            auto localPos = position - vocoders[i]->getBounds().getPosition();
+            
+            // Calculate value based on vertical position
+            double sliderHeight = vocoders[i]->getHeight();
+            double normalizedValue = 1.0 - (localPos.getY() / sliderHeight);
+            normalizedValue = juce::jlimit(0.0, 1.0, normalizedValue);
+            
+            // Set the slider value
+            vocoders[i]->setValue(normalizedValue, juce::sendNotificationAsync);
+            break;
+        }
+    }
+}
+
+void VocoderAudioProcessorEditor::mouseDown(const juce::MouseEvent& e) {
+    isDragging = true;
+    updateSliderValueAtPosition(e.getPosition());
+}
+void VocoderAudioProcessorEditor::mouseDrag(const juce::MouseEvent& e) {
+    if (isDragging) {
+        updateSliderValueAtPosition(e.getPosition());
+    }
+}
+void VocoderAudioProcessorEditor::mouseUp(const juce::MouseEvent& e) {
+    isDragging = false;
 }
